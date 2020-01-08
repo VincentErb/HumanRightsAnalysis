@@ -28,8 +28,8 @@ LastYearData$hf_score <- as.numeric(as.character(LastYearData$hf_score))
 # Choose to study region with the biggest number of countries
 data.frame(table(LastYearData$region))
 LastYearSubSaharan <- subset(LastYearData, LastYearData$region == "Sub-Saharan Africa")
-LastYearSubSaharan$ef_score <- as.numeric(as.character(LastYearSubSaharan$ef_score))
-LastYearSubSaharan$ef_government <- as.numeric(as.character(LastYearSubSaharan$ef_government))
+LastYearSubSaharan$pf_ss_women <- as.numeric(as.character(LastYearSubSaharan$pf_ss_women))
+LastYearSubSaharan$pf_religion_restrictions <- as.numeric(as.character(LastYearSubSaharan$pf_religion_restrictions))
 
 # -------- 4th chart : Study of France motto compare to Europe and the World
 # Convert factor data to numerical in order to plot it correctly
@@ -71,14 +71,12 @@ g + geom_boxplot(varwidth=T, fill="plum") +
        y="Human Freedom indicator")
 
 # -------- 3rd chart
-theme_set(theme_bw())  # pre-set the bw theme.
-g <- ggplot(LastYearSubSaharan, aes(ef_government, ef_score))
-g + geom_jitter(width = .5, size=1) +
-  labs(subtitle="Jittered Points", 
-       y="hwy", 
-       x="cty", 
-       title="Correlation of ... in Sub-Saharan Africa")
-
+g <- ggplot(LastYearSubSaharan, aes(pf_religion_restrictions, pf_ss_women))
+g + geom_point(size = 3, colour="#51bcda") + geom_smooth(method = lm, se = FALSE) +
+  labs(subtitle="ScatterPlot", 
+       y="Woman freedom", 
+       x="Religion restrictions", 
+       title="Correlation of Woman Freedom and Religion in Sub-Saharan Africa") + theme_gray()
 
 
 
