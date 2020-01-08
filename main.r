@@ -51,7 +51,7 @@ LibEquFraWorld <- rbind(LibEquFraFrance, WesternEuropeMean, WorldMean)
 # ==================== Plotting =================== # 
 # -------- 1st chart
 g <- ggplot(LastYearData, aes(pf_score, ef_score))
-g + geom_point(aes(colour = region), size = 2) + labs(title="Personnal and economical freedom for each country by region", 
+g + geom_point(aes(colour = region), size = 2) + geom_abline(intercept=0, slope=1) + labs(title="Personnal and economical freedom for each country by region", 
                                                       subtitle="Box plot",
                                                       caption="Source: mpg",
                                                       x="Personnal Freedom",
